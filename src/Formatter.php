@@ -16,8 +16,11 @@ class Formatter
             $info = $hc->getStatus();
             if (is_array($info) && !empty($info)) {
                 $temp[$hc->getDescription()] = array_merge(array("status" => Status::UP), $info);
+            } elseif ($info === true) {
+                $temp[$hc->getDescription()]["status"] = Status::UP;
             } elseif ($info) {
                 $temp[$hc->getDescription()]["status"] = Status::UP;
+                $temp[$hc->getDescription()]["message"] = $info;
             } else {
                 $temp[$hc->getDescription()]["status"] = Status::DOWN;
                 if ($hc->getException() instanceof HealthException) {

@@ -1,6 +1,6 @@
 all: init test
 init:
-	composer install
+	composer install -vvv
 test:
 	php vendor/phpunit/phpunit/phpunit.php
 dev:

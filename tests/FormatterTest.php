@@ -26,7 +26,7 @@ class FormatterTest extends PHPUnit_Framework_TestCase
             return false;
         });
         $this->fail->addCheck("mysql", function () use ($config) {
-            if ($config["version"] == "123") {
+            if ($config["version"] == "456") {
                 return $config;
             } else {
                 throw new HealthException("something was wrong");
@@ -34,7 +34,7 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         });
 
         $this->success = new HealthManager();
-        $this->fail->addCheck('info', function () {
+        $this->success->addCheck('info', function () {
             return 'this is some data';
         });
         $this->success->addCheck('pass', function () {
@@ -51,7 +51,7 @@ class FormatterTest extends PHPUnit_Framework_TestCase
 
     public function testToJsonFailure()
     {
-        $expected = '{"status":"UP","info":{"status":"UP","message":"this is some data"},"pass":{"status":"UP"},"fail":{"status":"DOWN"},"mysql":{"status":"DOWN","message":"something was wrong"}}';
+        $expected = '{"status":"DOWN","info":{"status":"UP","message":"this is some data"},"pass":{"status":"UP"},"fail":{"status":"DOWN"},"mysql":{"status":"DOWN","message":"something was wrong"}}';
 
         $this->assertEquals($expected, Formatter::toJson($this->fail));
     }
@@ -66,16 +66,16 @@ class FormatterTest extends PHPUnit_Framework_TestCase
     public function testAcceptsJson()
     {
         $_SERVER['HTTP_ACCEPT'] = 'text/html';
-        $this->assertFalse(Formatter::acceptsJson());
+        $this->assertFalse(Formatter::acceptJson());
 
         $_SERVER['HTTP_ACCEPT'] = 'application/json';
-        $this->assertTrue(Formatter::acceptsJson());
+        $this->assertTrue(Formatter::acceptJson());
 
         // Technically this is not compliant, but we'll accept it anyway.
         $_SERVER['HTTP_ACCEPT'] = 'text/html; Application/JSON';
-        $this->assertTrue(Formatter::acceptsJson());
+        $this->assertTrue(Formatter::acceptJson());
 
         unset($_SERVER['HTTP_ACCEPT']);
-        $this->assertFalse(Formatter::acceptsJson());
+        $this->assertFalse(Formatter::acceptJson());
     }
 }
