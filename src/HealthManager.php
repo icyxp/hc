@@ -37,7 +37,7 @@ class HealthManager
         foreach ($this->healthChecks as $healthCheck) {
             // Shortcut the rest if any check fails
             if ($status) {
-                $status = $healthCheck->getStatus();
+                $status = $status && $healthCheck->getStatus();
             }
         }
 

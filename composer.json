@@ -7,6 +7,11 @@
             "email": "icyboy@me.com"
         }
     ],
+    "repositories": [
+        {"type": "composer", "url": "https://packagist.phpcomposer.com"},
+        {"packagist": false}
+    ],
+    "license":"MIT",
     "require": {
         "php": ">=5.3.0"
     },
@@ -17,6 +22,5 @@
         "psr-4": {
             "Icyboy\\HealthCheck\\": "src/"
         }
-    },
-    "license":"MIT"
+    }
 }

@@ -20,6 +20,11 @@ class HealthCheck
         return $this->description;
     }
 
+    public function getException()
+    {
+        return $this->exception;
+    }
+
     public function getStatus()
     {
         if ($this->status === null) {
