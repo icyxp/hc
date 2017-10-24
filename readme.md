@@ -1,5 +1,9 @@
 # HealthCheck
 
+Allows you to easily write healthchecks for your application and display a simple, aggregated report so you can quickly diagnose whether and why your app is having trouble (or whether you can blame someone else). You can also monitor your healthchecks with [nagios](http://www.nagios.org/), [zabbix](http://www.zabbix.com/), etc.
+
+[![Build Status](https://travis-ci.org/icyxp/hc.svg?branch=master)](https://travis-ci.org/icyxp/hc)
+
 #### Wait, what's a healthcheck?
 
 Healthchecks are a great way to test system health and connectivity to other services. For example, you can verify connectivity to memcache or mysql, that your app can read / write to certain files, or that your API key for a third-party service is still working.
