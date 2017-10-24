@@ -8,11 +8,11 @@ use Icyboy\HealthCheck\HealthException;
 $hc = new HealthManager();
 
 $hc->addCheck('info', function(){
-    return "something";
+    return "response extra message";
 });
 
 $hc->addCheck('pass', function() {
-    return false;
+    return true;
 });
 
 $hc->addCheck('fail', function() {
