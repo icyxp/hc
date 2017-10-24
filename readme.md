@@ -15,7 +15,7 @@ You can install this into your project using [composer](http://getcomposer.org/d
 ```json
 {
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.4.0",
         "icyboy/health-check": "~1.0"
     }
 }
