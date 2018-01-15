@@ -81,7 +81,7 @@ class Formatter
 
     public static function autoArr(HealthManager $manager)
     {
-        echo static::toArr($manager);
+        return static::toArr($manager);
     }
 
     public static function acceptJson()

@@ -60,8 +60,11 @@ class HealthManager
         Formatter::autoexec($this);
     }
 
+    /**
+     * Response Array
+     */
     public function checkArr()
     {
-        Formatter::autoexec($this);
+        return Formatter::autoexec($this);
     }
 }
