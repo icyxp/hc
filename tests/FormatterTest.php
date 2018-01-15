@@ -40,7 +40,7 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         $this->success->addCheck('pass', function () {
             return true;
         });
-        $this->success->addCheck("mysql", function() use ($config) {
+        $this->success->addCheck("mysql", function () use ($config) {
             if ($config["version"] == "123") {
                 return $config;
             } else {
@@ -56,11 +56,54 @@ class FormatterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, Formatter::toJson($this->fail));
     }
 
+    public function testToArrFailure()
+    {
+        $expected = [
+            "status" => "DOWN",
+            "info" => [
+                "status"=> "UP",
+                "message" => "this is some data",
+            ],
+            "pass" => [
+                "status" => "UP",
+            ],
+            "fail" => [
+                "status" => "DOWN",
+            ],
+            "mysql" => [
+                "status" => "DOWN",
+                "message" => "something was wrong",
+            ]
+        ];
+
+        $this->assertEquals($expected, Formatter::toArr($this->fail));
+    }
+
     public function testToJsonSuccess()
     {
         $expected = '{"status":"UP","info":{"status":"UP","message":"this is some data"},"pass":{"status":"UP"},"mysql":{"status":"UP","version":123}}';
 
         $this->assertEquals($expected, Formatter::toJson($this->success));
+    }
+
+    public function testToArrSuccess()
+    {
+        $expected = [
+            "status" => "UP",
+            "info" => [
+                "status" => "UP",
+                "message" => "this is some data",
+            ],
+            "pass" => [
+                "status" => "UP",
+            ],
+            "mysql" => [
+                "status" => "UP",
+                "version" => 123
+            ]
+        ];
+
+        $this->assertEquals($expected, Formatter::toArr($this->success));
     }
 
     public function testAcceptsJson()

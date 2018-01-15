@@ -54,5 +54,5 @@ $hc->addCheck('xxx', function() use ($config) {
     }
 });
 
-$hc->check();
+echo json_encode($hc->check());
 ```
