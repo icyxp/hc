@@ -65,6 +65,6 @@ class HealthManager
      */
     public function checkArr()
     {
-        return Formatter::autoexec($this);
+        return Formatter::autoArr($this);
     }
 }
